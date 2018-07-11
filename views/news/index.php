@@ -10,9 +10,9 @@ use yii\helpers\Html;
 <br>
 
 <?php foreach($data as $item):?>
-
+<div class="col-md-10">
 <h3><?php echo $item->titles;?></h3>
 <p><?php echo $item->text;?></p>
 <h5>Author: <?php echo $item->authors->first_name.''.$item->authors->last_name;?></h5>
-<hr>
+</div>
 <?php endforeach;?>
