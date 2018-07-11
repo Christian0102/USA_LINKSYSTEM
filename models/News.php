@@ -21,7 +21,7 @@ class News extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'News';
+        return 'list';
     }
 
     /**
@@ -32,7 +32,9 @@ class News extends \yii\db\ActiveRecord
         return [
             [['titles', 'text'], 'required'],
             [['text'], 'string','min'=>50],
+            [['titles'], 'string','min'=>4],
             [['time', 'modified_time'], 'safe'],
+            [['id_author'], 'integer'],
             [['titles'], 'string', 'max' => 255],
         ];
     }
@@ -51,4 +53,10 @@ class News extends \yii\db\ActiveRecord
             'id_author' => 'Id Author',
         ];
     }
+	
+		public function getAuthors()
+		{
+			
+		return $this->hasOne(Authors::className(),['author_id'=>'id']);	
+		}
 }

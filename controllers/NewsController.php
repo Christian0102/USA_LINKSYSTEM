@@ -11,13 +11,12 @@ class NewsController extends \yii\web\Controller
     public function actionCreate()
 	 {	
 	 //Create object Class news
-	 $news =new News();
-	
-	
-			if(Yii::$app->request->post() && $news->save())
+	 $news = new News();
+		
+			if($news->load(Yii::$app->request->post()) && $news->save())
 			{	
 				Yii::$app->session->setFlash('success','News Added!!');
-				return $this->refresh();	
+				return $this->redirect(['news/index']);	
 				
 			}
 		       return $this->render('create',['news'=>$news]);
@@ -31,8 +30,11 @@ class NewsController extends \yii\web\Controller
     }
 
     public function actionIndex()
-    {
-        return $this->render('index');
+    { 
+		$news = new News();
+		$data=$news->find()->all();
+				
+        return $this->render('index',['data'=>$data]);
     }
 
     public function actionUpdate()
