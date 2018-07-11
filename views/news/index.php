@@ -2,6 +2,7 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 ?>
 <h1>List Of News:</h1>
@@ -11,8 +12,12 @@ use yii\helpers\Html;
 
 <?php foreach($data as $item):?>
 <div class="col-md-10">
-<h3><?php echo $item->titles;?></h3>
+<a href="<?php echo Url::to(['news/view','id'=>$item->id])?>"><h3><?php echo $item->titles;?></h3></a>
 <p><?php echo $item->text;?></p>
-<h5>Author: <?php echo $item->authors->first_name.''.$item->authors->last_name;?></h5>
+Data of added:<p><?php echo $item->time;?></p>
+Modified date:<p><?php echo $item->modified_time;?></p>
+<h4>Author: <?php echo $item->authors->name;?></h4>
 </div>
+
+
 <?php endforeach;?>

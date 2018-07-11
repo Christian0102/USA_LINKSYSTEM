@@ -1,9 +1,17 @@
-<?php
-/* @var $this yii\web\View */
-?>
-<h1>/news/update</h1>
+<?php 
+/* $model  app\models\News */
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
+use yii\widgets\ActiveForm;
+
+?>
+<h1>Update News ID:<?php echo $news->id;?></h1>
+<?php $form = ActiveForm::begin();?>
+<?php echo  $form->field($news,'titles'); ?>
+<?php echo  $form->field($news,'text')->textArea(['rows' => '6']); ?>
+<?php echo  $form->field($news,'id_author')->dropDownList(ArrayHelper::map($authors, 'author_id', 'name'),['prompt' => 'Select Authors']); ?>
+
+
+<?php echo Html::submitButton('Save',['class'=>'btn btn-primary']);?>
+<?php ActiveForm::end() ?>

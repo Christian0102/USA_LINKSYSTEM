@@ -50,13 +50,13 @@ class News extends \yii\db\ActiveRecord
             'text' => 'Text',
             'time' => 'Time',
             'modified_time' => 'Modified Time',
-            'id_author' => 'Id Author',
+            'id_author' => 'name',
         ];
     }
 	
 		public function getAuthors()
 		{
 			
-		return $this->hasOne(Authors::className(),['author_id'=>'id']);	
+		return $this->hasOne(Authors::className(),['author_id'=>'id_author']);	
 		}
 }
