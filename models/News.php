@@ -31,6 +31,7 @@ class News extends \yii\db\ActiveRecord
     {
         return [
             [['titles', 'text'], 'required'],
+    	    [['titles', 'text'], 'trim'],
             [['text'], 'string','min'=>50],
             [['titles'], 'string','min'=>4],
             [['time', 'modified_time'], 'safe'],
@@ -53,7 +54,7 @@ class News extends \yii\db\ActiveRecord
             'id_author' => 'name',
         ];
     }
-	
+		//This function make relations about News to Authors
 		public function getAuthors()
 		{
 			

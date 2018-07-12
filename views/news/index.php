@@ -3,6 +3,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\widgets\LinkPager;
 
 ?>
 <h1>List Of News:</h1>
@@ -18,6 +19,10 @@ Data of added:<p><?php echo $item->time;?></p>
 Modified date:<p><?php echo $item->modified_time;?></p>
 <h4>Author: <?php echo $item->authors->name;?></h4>
 </div>
-
-
 <?php endforeach;?>
+
+<div class=col-xs-5>
+<?php echo LinkPager::widget([
+    'pagination' => $pages,
+]);?>
+</div>

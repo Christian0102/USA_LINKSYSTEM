@@ -6,6 +6,7 @@ namespace app\controllers;
 use Yii;
 use app\models\News;
 use app\models\Authors;
+use yii\data\Pagination;
 
 class NewsController extends \yii\web\Controller
 {
@@ -45,10 +46,18 @@ class NewsController extends \yii\web\Controller
 
     public function actionIndex()
     { 
-		$news = new News();
-		$data=$news->find()->all();
-				
-        return $this->render('index',['data'=>$data]);
+		//Create Object Find
+		$query=News::find();
+		//Clone object find for calculated total count
+		$countQuery = clone $query;
+		//Create paginating class
+		$pages = new Pagination(['totalCount' => $countQuery->count(),'pageSize' => 5]);
+		$data = $query->offset($pages->offset)
+        ->limit($pages->limit)
+        ->all();
+		//Rendering data
+        return $this->render('index',['data'=>$data,'pages'=>$pages,]);
+		
     }
 
     public function actionUpdate($id)
