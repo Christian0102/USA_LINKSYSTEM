@@ -6,7 +6,7 @@ use yii\helpers\Url;
 use yii\widgets\LinkPager;
 
 ?>
-<h1>List Of News:</h1>
+<h1>News:</h1>
 <br>
 <?php echo  Html::a('Create', ['/news/create'], ['class'=>'btn btn-primary']) ?>
 <br>
